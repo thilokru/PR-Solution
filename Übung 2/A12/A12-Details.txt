@@ -1,0 +1,5 @@
+b) Der Pre-Scaler ist auf 1:8. delay braucht nun also 8*256 Takte, oder 8*256/1.000.000 s = 32,768 ms. Insgesamt also 2^13*delay = 268,4s
+c) Die 1. Flakert mit etwa dieser Frequenz. Die 2. Mit der hälfte... Die 5. Mit 2^-5. f = 100000 /(8*256*2^5) = 15,26 Hz
+d) Ja, kann ich. Mehr als 30 FPS sind also sehr sinnvoll.
+e) Wir können in der Delay-Schleife statt auf ein Timer-Interrupt auf einen externen Interrupt warten.
+   Alternativ können wir auch T0CKL zählen. Entweder müssen wir RA4, RB0 oder RB5,6 oder 7 als Output aufgeben.

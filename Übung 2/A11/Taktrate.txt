@@ -1,0 +1,10 @@
+gesetzt sind PS0, PS1, PS2 -> Prescaler ist 256, d.h. 256 normale Takte werden zu einem Zählpuls
+ungesetzt ist PSA. -> Der Prescaler ist aktiv.
+ungesetzt ist T0CS -> Verwende FOSC/4, d.h. die Clock-Source arbeitet mit den Taktzyklen. 1 Instruction -> 1 Puls
+Es dauert also 256 normale Takte, bis ein Zählpuls aufgrund des Prescalers das Zählwerk erreicht.
+Wir warten, bis T0IF gesetzt ist. Dieses Flag wird gesetzt, wenn der 8-bit Zähler überläuft. Dies sind nochmal 256 Zeiteinheiten.
+Wir warten also 256*256 = 65536 Takte. In anbetracht dieser Größenordnungen sind die Latenzen meines Codes vernachlässigbar.
+Der PIC hat 4 Unterinstruktionen pro Takt. Das heißt, von den 4MHz bleiben noch 1 MHz übrig.
+Eine delay-Schleife wartet also etwa 0,066 Sekunden.
+Der Lauf von einer LED in A10 hin und zurück dauert ca. 0,87 s. Dabei werden 14 delay-Schleifen ausgeführt.
+Theoretisch sollte dies also 0,91s dauern. Das deckt sich im Rahmen des Messfehlers.
